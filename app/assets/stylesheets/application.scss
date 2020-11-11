@@ -22,17 +22,18 @@ html {
 
 body {
   position: relative;
-  min-height: 100%;
 }
 
 #posts-index {
   margin: 250px 0 0;
   padding-bottom: 100px;
+  min-height: calc(100vh - 350px);
 }
 
 #posts-show {
   margin: 200px 0 0;
   padding-bottom: 100px;
+  min-height: calc(100vh - 350px);
 }
 
 #users-show {
