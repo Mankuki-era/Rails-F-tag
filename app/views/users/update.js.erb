@@ -1,0 +1,7 @@
+document.getElementById('userInfo').innerHTML = '<%= j(render 'profile', user: @user) %>'
+document.getElementById('header').innerHTML = '<%= j(render 'shared/header') %>'
+
+var secondmodal = document.getElementById('second-modal')
+var secondmask = document.getElementById('second-mask')
+secondmodal.classList.add('hidden')
+secondmask.classList.add('hidden')

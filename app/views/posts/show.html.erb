@@ -1,0 +1,6 @@
+<%= render 'modal', page: "postshow", post: Post.new, value: '投稿' %>
+<div class="posts-area">
+  <div id="postShow" class="post-card">
+    <%= render 'posts/post', post: @post, page: "postshow" %>
+  </div>
+</div>

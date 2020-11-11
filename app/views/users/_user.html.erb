@@ -1,0 +1,113 @@
+<div id="userInfo" class="user-profile main-profile">
+  <%= render 'profile', user: user %>
+</div>
+<div id="detname"><% if detname.present? %><%= detname %><% end %></div>
+<div class="user-posts">
+  <% if user == current_user %>
+    <%= render 'shared/addlink', page: "usershow" %>
+  <% end %>
+  <div id="toggleTab" class="toggle-tab">
+    <div class="tab-form">
+      <span onclick="posts()">投稿</span>
+      <span onclick="favorites()">タッグ中</span>
+      <span onclick="follower()">フォロワー</span>
+      <span onclick="following()">フォロー中</span>
+    </div>
+    <hr id="indicator">
+  </div>
+  <div id="userPosts">
+    <div id="userpostsIndex" class="userposts-Index">
+      <%= render 'posts/posts', posts: posts, page: "usershow", message: "投稿はありません", detname: "userposts", user: user %>
+    </div>
+    <div id="favoriteposts" class="favoriteposts">
+      <%= render 'posts/posts', posts: @favoriteposts, page: "usershow", message: "タッグ中の投稿はありません", detname: "favoriteposts", user: user %>
+    </div>
+    <div id="followerIndex" class="followusers-index">
+      <%= render 'followusers', users: user.followers, mainuser: user, message: "フォロワーはいません" %>
+    </div>
+    <div id="followingIndex" class="followusers-index">
+      <%= render 'followusers', users: user.followings, mainuser: user, message: "フォロー中のユーザーはいません" %>
+    </div>
+  </div>
+</div>
+
+<script>
+
+var userPosts = document.getElementById('userPosts');
+var indicator = document.getElementById('indicator');
+var detname = document.getElementById('detname');
+var toggle_w = 0;
+var post_w = 0;
+var margin = 0;
+var post = 0;
+
+function shared() {
+  toggle_w = document.getElementById('toggleTab').clientWidth / 4;
+  post = document.getElementById('followerIndex').clientWidth;
+  if(toggle_w === 70) {
+    margin = 10;
+  }
+  else {
+    margin = 100;
+  }
+  post_w = post + margin;
+}
+
+if(detname.textContent === "favoriteposts") {
+  var current_num = 1;
+  shared();
+  userPosts.style.transform = `translateX(${-post_w * current_num}px)`;
+  indicator.style.transform = `translateX(${toggle_w * current_num}px)`;
+}
+else {
+  var current_num = 0;
+  shared();
+  userPosts.style.transform = `translateX(${-post_w * current_num}px)`;
+  indicator.style.transform = `translateX(${toggle_w * current_num}px)`;
+}
+
+
+
+//読み込み時の表示
+window_load();
+
+//ウィンドウサイズ変更時に更新
+window.onresize = window_load;
+
+//サイズの表示
+function window_load() {
+	if(470 < window.innerWidth < 490) {
+    shared();
+    userPosts.style.transform = `translateX(${-post_w * current_num}px)`;
+    indicator.style.transform = `translateX(${toggle_w * current_num}px)`;
+  }
+}
+
+function posts() {
+  current_num = 0;
+  shared();
+  userPosts.style.transform = `translateX(${-post_w * 0}px)`;
+  indicator.style.transform = `translateX(${toggle_w * 0}px)`;
+}
+
+function favorites() {
+  current_num = 1;
+  shared();
+  userPosts.style.transform = `translateX(${-post_w * 1}px)`;
+  indicator.style.transform = `translateX(${toggle_w * 1}px)`;
+}
+
+function follower() {
+  current_num = 2;
+  shared();
+  userPosts.style.transform = `translateX(${-post_w * 2}px)`;
+  indicator.style.transform = `translateX(${toggle_w * 2}px)`;
+}
+
+function following() {
+  current_num = 3;
+  shared();
+  userPosts.style.transform = `translateX(${-post_w * 3}px)`;
+  indicator.style.transform = `translateX(${toggle_w * 3}px)`;
+}
+</script>

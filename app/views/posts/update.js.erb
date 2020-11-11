@@ -1,0 +1,16 @@
+<% if @page == "usershow" %>
+  document.getElementById('post-<%= @post.id %>').innerHTML = '<%= j(render 'posts/post', post: @post, page: "usershow") %>'
+<% elsif @page == "postindex" %>
+  document.getElementById('post-<%= @post.id %>').innerHTML = '<%= j(render 'posts/post', post: @post, page: "postindex") %>'
+<% else %>
+  document.getElementById('postShow').innerHTML = '<%= j(render 'posts/post', post: @post, page: "postshow") %>'
+<% end %>
+
+var form = document.getElementsByTagName('form')[0]
+form.outerHTML = '<%= j(render 'form', page: @page, post: Post.new, value: '投稿') %>'
+
+document.getElementById('post_title').value = ''
+document.getElementById('post_content').value = ''
+document.getElementById('post_post_img').value = ''
+document.getElementById('modal').classList.add('hidden')
+document.getElementById('mask').classList.add('hidden')

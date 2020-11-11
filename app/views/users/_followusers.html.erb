@@ -1,0 +1,35 @@
+<% if users.present? %>
+  <% users.each do |user| %>
+    <div id="followuser-<%= user.id %>" class="followuser">
+      <div class="user-profile">
+        <div class="profile-img">
+          <% if user.profile_img.attached? %>
+            <%= image_tag user.profile_img, class: "img" %>
+          <% else %>
+            <%= image_tag 'no-profile.png', class: "img" %>
+          <% end %>
+        </div>
+        <div class="aside-info">
+          <div class="sub-aside">
+            <p class="user-name"><%= user.user_name %></p>
+            <% if user == current_user %>
+              <div class="invisible-box"></div>
+            <% else %>
+              <div id="followBtn">
+                <%= render 'users/followbtn', user: user, mainuser: mainuser %>
+              </div>
+            <% end %>
+          </div>
+          <div id="secondcount" class="count-aside second">
+            <%= render 'users/countbox', user: user %>
+          </div>
+          <%= link_to user_path(user), class: "user-link" do %>
+            <i class="fas fa-walking"></i> 詳細へ
+          <% end %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+<% else %>
+  <%= render 'shared/noposts', message: message %>
+<% end %>

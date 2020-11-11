@@ -1,0 +1,22 @@
+<%= form_with model: @user do |f| %>
+  <div class="form-contena">
+    <div class="form-field">
+      <div class="label">
+        <p>ニックネーム</p>
+        <div>必須</div>
+      </div>
+      <%= f.text_field :user_name, class: "text-field", :required => true  %>
+    </div>
+    <div class="form-field">
+      <div class="label">
+        <p>プロフィール</p>
+      </div>
+      <%= f.text_area :profile_content, class: "text-area" %>
+    </div>
+    <%= f.file_field :profile_img, class: "file-field" %>
+    <div class="buttons">
+      <%= f.submit '更新', class: "submit-btn" %>
+      <button id="exit" class="cancel-btn">キャンセル</button>
+    </div>
+  </div>
+<% end %>

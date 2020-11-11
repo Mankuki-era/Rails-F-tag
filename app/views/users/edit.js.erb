@@ -1,0 +1,27 @@
+var secondmodal = document.getElementById('second-modal')
+var secondmask = document.getElementById('second-mask')
+var exit = document.getElementById('exit')
+var username = document.getElementById('user_user_name')
+var profilecontent = document.getElementById('user_profile_content')
+var profileimg = document.getElementById('user_profile_img')
+
+secondmodal.innerHTML = '<%= j(render 'users/form', user: @user) %>'
+
+secondmodal.classList.remove('hidden')
+secondmask.classList.remove('hidden')
+
+secondmask.addEventListener('click', () => {
+  secondmodal.classList.add('hidden')
+  secondmask.classList.add('hidden')
+  username.value = ''
+  profilecontent.value = ''
+  profileimg.value = ''
+})
+
+exit.addEventListener('click', () => {
+  secondmodal.classList.add('hidden')
+  secondmask.classList.add('hidden')
+  username.value = ''
+  profilecontent.value = ''
+  profileimg.value = ''
+})

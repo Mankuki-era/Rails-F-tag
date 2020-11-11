@@ -1,0 +1,9 @@
+<% if @user == @mainuser %>
+  document.getElementById('userInfo').innerHTML = '<%= j(render 'users/profile', user: @user) %>'
+  document.getElementById('followerIndex').innerHTML = '<%= j(render 'users/followusers', users: @user.followers, mainuser: @mainuser, message: "フォロワーはいません") %>'
+  document.getElementById('followingIndex').innerHTML = '<%= j(render 'users/followusers', users: @user.followings, mainuser: @mainuser, message: "フォロ中のユーザーはいません") %>'
+<% else %>
+  document.getElementById('userInfo').innerHTML = '<%= j(render 'users/profile', user: @mainuser) %>'
+  document.getElementById('followerIndex').innerHTML = '<%= j(render 'users/followusers', users: @mainuser.followers, mainuser: @mainuser, message: "フォロワーはいません") %>'
+  document.getElementById('followingIndex').innerHTML = '<%= j(render 'users/followusers', users: @mainuser.followings, mainuser: @mainuser, message: "フォロ中のユーザーはいません") %>'
+<% end %>

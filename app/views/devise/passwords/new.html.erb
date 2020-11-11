@@ -1,0 +1,17 @@
+<h2>パスワードを忘れましたか？</h2>
+
+<div class="form-contena">
+  <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="field">
+      <%= f.label :email, class: "label" %><br />
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-field" %>
+      <i class="fas fa-envelope email-icon"></i>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "送信", class: "submit-btn" %>
+    </div>
+  <% end %>
+</div>

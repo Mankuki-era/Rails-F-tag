@@ -1,0 +1,10 @@
+<%= render 'posts/modal', page: "usershow", post: Post.new, value: '投稿' %>
+
+<div id="second-mask" class="hidden"></div>
+<div id="second-modal" class="hidden">
+  <%= render 'form', user: @user %>
+</div>
+
+<div id="usershow" class="userShow-contena">
+  <%= render 'user', user: @user, posts: @posts, detname: @detname %>
+</div>

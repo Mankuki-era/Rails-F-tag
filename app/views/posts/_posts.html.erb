@@ -1,0 +1,33 @@
+<!-- 投稿表示部分 -->
+<% if page == "postindex" %>
+  <% if posts.present? %>
+    <% posts.each do |post| %>
+      <div id="post-<%= post.id %>" class="post-card">
+        <%= render 'posts/post', post: post, page: page %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= render 'shared/noposts', message: message %>
+  <% end %>
+<% elsif page == "usershow" %>
+  <% if posts.present? %>
+    <% posts.each do |post| %>
+      <div id="post-<%= post.id %>" class="post-card">
+        <%= render 'posts/post', post: post, page: page, user: user %>
+      </div>
+    <% end %>
+  <% else %>
+    <%= render 'shared/noposts', message: message %>
+  <% end %>
+<% end %>
+
+<!-- ページネーション部分 -->
+<% if page == "postindex"%>
+  <%= paginate posts %>
+<% elsif page == "usershow" %>
+  <% if detname == "userposts" %>
+    <%= paginate posts, :param_name => 'page2', params: {user: user} %>
+  <% elsif detname == "favoriteposts" %>
+    <%= paginate posts, :param_name => 'page3', params: {user: user} %>
+  <% end %>
+<% end %>

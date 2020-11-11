@@ -1,0 +1,27 @@
+<div class="profile-img">
+  <% if user.profile_img.attached? %>
+    <%= image_tag user.profile_img, class: "img" %>
+  <% else %>
+    <%= image_tag 'no-profile.png', class: "img" %>
+  <% end %>
+</div>
+<div class="aside-info">
+  <div class="sub-aside">
+    <p class="user-name"><%= user.user_name %></p>
+    <% if user == current_user %>
+      <%= link_to "プロフィール編集",edit_user_path(user), data: {remote: true}, class: "edit-user" %>
+    <% else %>
+      <div id="followBtn">
+        <%= render 'users/followbtn', user: user, mainuser: user %>
+      </div>
+    <% end %>
+  </div>
+  <div id="count" class="count-aside">
+    <%= render 'users/countbox', user: user %>
+  </div>
+  <% if user.profile_content.present? %>
+    <div class="profile-content">
+        <p><%= simple_format user.profile_content %></p>
+    </div>
+  <% end %>
+</div>

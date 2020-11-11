@@ -1,0 +1,32 @@
+<%= render 'modal', page: "postindex", post: Post.new, value: '投稿' %>
+
+<div class="search-box">
+  <%= search_form_for @q do |f| %>
+    <%= f.text_field :content_or_title_or_user_user_name_cont, class: "text-field", :placeholder => "投稿を検索" %>
+    <%= button_tag type: 'submit', class: "submit-btn", id: "submit" do %>
+      <i class="fas fa-search fa-lg"></i>
+    <% end %>
+  <% end %>
+</div>
+
+<div id="posts" class="posts-area">
+  <div class="search-result">
+    <% if !(@tag.present?) %>
+      <% if @q.content_or_title_or_user_user_name_cont.present? %>
+        <p><span><%= @q.content_or_title_or_user_user_name_cont %></span>の検索結果：<span><%= @posts.total_count %></span>件</p>
+      <% end %>
+    <% elsif %>
+      <p><span><i class="fas fa-tag fa-lg tag-icon"></i> <%= @tag.name %></span>：<span><%= @secondposts.total_count %></span>件</p>
+    <% end %>
+  </div>
+  <% if !(@tag.present?) && !(@q.content_or_title_or_user_user_name_cont.present?) %>
+    <%= render 'shared/addlink', page: "postindex" %>
+  <% end %>
+  <div id="postsindex">
+    <% if @tag.present? %>
+      <%= render 'posts', posts: @secondposts, page: "postindex", message: "投稿はありません", detname: "postindex" %>
+    <% else %>
+      <%= render 'posts', posts: @posts, page: "postindex", message: "該当する投稿はありません", detname: "postindex" %>
+    <% end %>
+  </div>
+</div>

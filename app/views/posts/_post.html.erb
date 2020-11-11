@@ -1,0 +1,108 @@
+<div class="user-info">
+  <%= link_to user_path(post.user), class: "user-link" do %>
+  <div class="profile-img">
+    <% if post.user.profile_img.attached? %>
+      <%= image_tag post.user.profile_img, class: "img" %>
+    <% else %>
+      <%= image_tag 'no-profile.png', class: "img" %>
+    <% end %>
+  </div>
+  <div class="aside-info">
+    <p class="user-name"><%= post.user.user_name %></p>
+    <p class="created-at"><%= post.created_at.strftime('%Y/%m/%d %H:%M')  %></p>
+  </div>
+  <% end %>
+  <% if current_user == post.user %>
+  <div class="sub-links">
+    <%= link_to edit_post_path(post, page: page), data: {remote: true}, class: "edit" do %>
+      <i class="fas fa-edit edit-icon"></i>
+    <% end %>
+    <%= link_to post_path(post, pagename: page), method: :delete, data: { confirm: '削除しますか？', remote: true}, class: "delete" do %>
+      <i class="fas fa-trash-alt delete-icon"></i>
+    <% end %>
+  </div>
+  <% end %>
+</div>
+<div class="card-item">
+  <% if post.post_img.attached? %>
+    <div class="post-img">
+      <%= image_tag post.post_img, class: "img" %>
+    </div>
+  <% end %>
+  <div class="help">
+    <% if post.user == current_user %>
+    <div class="word">
+      <i class="fas fa-hands-helping icon helping-icon"></i>
+    </div>
+    <div class="mymessage">
+      <%= post.favorites.count %>
+    </div>
+    <% else %>
+      <div class="help-link">
+        <% if current_user.favorites.exists?(post_id: post.id) %>
+          <% if page == "usershow" %>
+            <%= link_to post_favorites_path(post, page: page, user: user), data: {remote: true}, method: :delete, class: "help-btn" do %>
+              <i class="fas fa-hands-helping icon helping-icon"></i>
+              <div class="btn-content change">タッグ中</div>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post, page: page), data: {remote: true}, method: :delete, class: "help-btn" do %>
+              <i class="fas fa-hands-helping icon helping-icon"></i>
+              <div class="btn-content change">タッグ中</div>
+            <% end %>
+          <% end %>
+        <% else %>
+          <% if page == "usershow" %>
+            <%= link_to post_favorites_path(post, page: page, user: user), data: {remote: true}, method: :post, class: "help-btn" do %>
+              <i class="fas fa-hands-helping icon help-icon"></i>
+              <div class="btn-content">タッグ</div>
+            <% end %>
+          <% else %>
+            <%= link_to post_favorites_path(post, page: page), data: {remote: true}, method: :post, class: "help-btn" do %>
+              <i class="fas fa-hands-helping icon help-icon"></i>
+              <div class="btn-content">タッグ</div>
+            <% end %>
+          <% end %>
+        <% end %>
+      </div>
+      <% if current_user.favorites.exists?(post_id: post.id) %>
+        <div id="message" class="selectmessage">
+          <%= post.favorites.count %>
+        </div>
+      <% else %>
+        <div id="message" class="message">
+          <%= post.favorites.count %>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+  <h1><%= post.title %></h1>
+  <% if page == "postshow" %>
+    <p><%= simple_format post.content.gsub(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/, '').lstrip %></p>
+  <% else %>
+    <p><%= simple_format post.content.truncate(50).gsub(/[#＃][\w\p{Han}ぁ-ヶｦ-ﾟー]+/, '').lstrip %></p>
+  <% end %>
+  <% if post.tags.present? %>
+    <div class="tag-contena">
+      <ul class="tag-links">
+        <% post.tags.each do |tag| %>
+          <li><%= link_to tag.name, posts_path(tag_id: tag.id) %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <% if page == "postshow"%>
+    <div id="comment" class="post-comment">
+      <%= render 'posts/comment', post: post, comment: Comment.new, comments: post.comments.order(created_at: :desc) %>
+    </div>
+  <% else %>
+    <div class="comment">
+      <p class="comment-count"><%= post.comments.count %>件のタッグコメント</p>
+    </div>
+    <div class="link">
+      <%= link_to post_path(post), class: "show-link" do %>
+        <i class="fas fa-chevron-circle-right"></i> 詳細ページ
+      <% end %>
+    </div>
+  <% end %>
+</div>

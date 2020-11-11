@@ -1,0 +1,11 @@
+<% if @page == "postshow" %>
+  document.getElementById('postShow').innerHTML = '<%= j(render 'posts/post', post: @post, page: "postshow") %>'
+<% elsif @page == "postindex" %>
+  document.getElementById('post-<%= @post.id %>').innerHTML = '<%= j(render 'posts/post', post: @post, page: "postindex") %>'
+<% else %>
+  <% if @user == "#{current_user.id}" %>
+    document.getElementById('favoriteposts').innerHTML = '<%= j(render 'posts/posts', posts: @favoriteposts, page: "usershow", message: "タッグ中の投稿はありません", detname: "favoriteposts", user: @user) %>'
+  <% else %>
+    document.getElementById('post-<%= @post.id %>').innerHTML = '<%= j(render 'posts/post', post: @post, page: "usershow", user: @user) %>'
+  <% end %>
+<% end %>

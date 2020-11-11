@@ -1,0 +1,6 @@
+<% if @page == "usershow" %>
+  document.getElementById('userpostsIndex').innerHTML = '<%= j(render 'posts/posts', posts: @userposts, page: "usershow", message: "投稿はありません", detname: "userposts", user: @user) %>'
+  document.getElementById('count').innerHTML = '<%= j(render 'users/countbox', user: @user) %>'
+<% elsif @page == "postindex" %>
+  document.getElementById('postsindex').innerHTML = '<%= j(render 'posts/posts', posts: @posts, page: "postindex", message: "投稿はありません", detname: "postindex") %>'
+<% end %>

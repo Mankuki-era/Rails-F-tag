@@ -1,0 +1,9 @@
+<% if page == "usershow" %>
+  <div class="add-link add_usershow">
+<% else %>
+  <div class="add-link">
+<% end %>
+  <%= link_to new_post_path(page: page), data: {remote: true}, class: "add-post" do %>
+    <i class="fas fa-feather-alt fa-lg write-icon"></i>
+  <% end %>
+</div>

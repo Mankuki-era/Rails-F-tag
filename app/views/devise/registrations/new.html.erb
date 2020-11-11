@@ -1,0 +1,49 @@
+<h2>新規登録</h2>
+
+<div class="form-contena">
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+
+    <div class="field">
+      <%= f.label "ユーザー名", class: "label" %>
+      <%= f.text_field :user_name, autofocus: true, autocomplete: "user_name", class: "text-field" %>
+      <% if resource.errors.include?(:user_name) %>
+        <p class="error"><%= resource.errors.full_messages_for(:user_name).first %>
+      <% end %>
+      <i class="fas fa-user user-icon"></i>
+    </div>
+
+    <div class="field">
+      <%= f.label :email, class: "label" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "text-field" %>
+      <% if resource.errors.include?(:email) %>
+        <p class="error"><%= resource.errors.full_messages_for(:email).first %>
+      <% end %>
+      <i class="fas fa-envelope email-icon"></i>
+    </div>
+
+    <div class="field pass-field">
+      <%= f.label :password, class: "label" %>
+      <% if @minimum_password_length %>
+      <div>(<%= @minimum_password_length %> 文字以上)</div>
+      <% end %>
+      <%= f.password_field :password, autocomplete: "new-password", class: "text-field" %>
+      <% if resource.errors.include?(:password) %>
+        <p class="error"><%= resource.errors.full_messages_for(:password).first %>
+      <% end %>
+      <i class="fas fa-unlock-alt pass-icon"></i>
+    </div>
+
+    <div class="field">
+      <%= f.label :password_confirmation, class: "label" %><br />
+      <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "text-field" %>
+      <% if resource.errors.include?(:password_confirmation) %>
+        <p class="error"><%= resource.errors.full_messages_for(:password_confirmation).first %>
+      <% end %>
+      <i class="fas fa-unlock-alt passConf-icon"></i>
+    </div>
+
+    <div class="actions">
+      <%= f.submit "新規登録", class: "submit-btn" %>
+    </div>
+  <% end %>
+</div>

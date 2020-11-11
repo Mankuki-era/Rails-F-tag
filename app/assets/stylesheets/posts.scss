@@ -1,0 +1,468 @@
+// Place all the styles related to the posts controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+
+.search-box {
+  position: absolute;
+  right: 11px;
+  top: -150px;
+  .post_search {
+    position: relative;
+    .text-field {
+      width: 200px;
+      height: 36px;
+      padding: 5px 50px 5px 15px;
+      box-sizing: border-box;
+      border-radius: 18px;
+      border: 1px solid #ccc;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+    }
+    .text-field:focus {
+      outline: none;
+      border: 2px solid #1e90ff;
+      width: 201px;
+    }
+    .submit-btn {
+      position: absolute;
+      right: 11px;
+      top: 11px;
+      border: none;
+      background: transparent;
+      color: #ddd;
+      appearance: none;
+      outline: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      cursor: pointer;
+    }
+    .submit-btn:hover {
+      color: #aaa;
+    }
+  }
+}
+
+.posts-area, .post-show {
+  width: 100%;
+  margin: 200px auto 0;
+  position: relative;
+  .search-result {
+    background: rgb(243, 243, 243);
+    border-radius: 10px;
+    p {
+      padding: 8px;
+      text-align: center;
+      .tag-icon {
+        color: #1e90ff;
+      }
+      span {
+        font-weight: bold;
+      }
+    }
+  }
+}
+
+.post-card {
+  clear: right;
+  border: 1px solid #eee;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(51, 51, 51, 0.164);
+  padding-bottom: 10px;
+  .user-info {
+    display: flex;
+    padding: 10px;
+    position: relative;
+    .user-link {
+      display: flex;
+      text-decoration: none;
+      color: #333;
+      .profile-img {
+        display: flex;
+        align-items: center;
+        .img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit:cover;
+          border-radius:50%;
+        }
+      }
+      .aside-info {
+        margin-left: 10px;
+        p {
+          margin: 0;
+        }
+        .user-name {
+          font-weight: bold;
+        }
+        .created-at {
+          font-size: 13px;
+          color: #bbb;
+        }
+      }
+    }
+    .sub-links {
+      position: absolute;
+      right: 11px;
+      top: 21px;
+      .edit, .delete {
+        text-decoration: none;
+      }
+      .edit {
+        .edit-icon {
+          color: #bbb;
+        }
+      }
+      .delete {
+        margin-left: 5px;
+        .delete-icon {
+          color: #bbb;
+        }
+      }
+    }
+  }
+  .card-item {
+    width: 90%;
+    border-top: 1px solid #ddd;
+    margin: 0 auto;
+    h1 {
+      font-size: 17px;
+      margin: 0;
+      padding: 0 0 10px;
+      border-bottom: 1px solid #ddd;
+    }
+    .help {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+      position: relative;
+      height: 20px;
+      padding: 10px 10px 0;
+      .word {
+        background: #1e90ff;
+        border: 1px solid #1e90ff;
+        border-radius: 5px 0 0 5px;
+        color: #fff;
+        width: 35px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 12px;
+      }
+      .mymessage {
+        background: #fff;
+        border: 1px solid #1e90ff;
+        width: 20px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 11px;
+        color: #1e90ff;
+      }
+      .mymessage::before {
+        position: absolute;
+        top: 15px;
+        right: 31px;
+        content: "";
+        border-width: 5px 6px 5px 0px;
+        border-style: solid;
+        border-color: transparent #fff transparent transparent;
+      }
+      .help-link {
+        width: 90px;
+        font-size: 12px;
+        .help-btn {
+          display: flex;
+          text-decoration: none;
+          align-items: center;
+          .icon {
+            border-radius: 5px 0 0 5px;
+            width: 20px;
+            text-align: center;
+            line-height: 20px;
+            font-size: 12px;
+          }
+          .helping-icon {
+            background: red;
+            border: 1px solid red;
+            color: #fff;
+          }
+          .help-icon {
+            background: #1e90ff;
+            border: 1px solid #1e90ff;
+            color: #fff;
+          }
+          .btn-content {
+            flex: 1;
+            text-align: center;
+            color: #1e90ff;
+            text-align: center;
+            line-height: 20px;
+            font-size: 11px;
+            background:#fff;
+            border: 1px solid #1e90ff;
+          }
+          .change {
+            color: red;
+            border: 1px solid red;
+          }
+        }
+      }
+      .selectmessage {
+        background: red;
+        border: 1px solid red;
+        width: 20px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 11px;
+        color: #fff;
+      }
+      .selectmessage::before {
+        position: absolute;
+        top: 15px;
+        right: 33px;
+        content: "";
+        border-width: 5px 6px 5px 0px;
+        border-style: solid;
+        border-color: transparent red transparent transparent;
+      }
+      .message {
+        background: #1e90ff;
+        border: 1px solid #1e90ff;
+        width: 20px;
+        text-align: center;
+        line-height: 20px;
+        font-size: 11px;
+        color: #fff;
+      }
+      .message::before {
+        position: absolute;
+        top: 15px;
+        right: 33px;
+        content: "";
+        border-width: 5px 6px 5px 0px;
+        border-style: solid;
+        border-color: transparent #1e90ff transparent transparent;
+      }
+    }
+    .post-img {
+      .img {
+        width: 100%;
+        height: auto;
+      }
+    }
+    p {
+      font-size: 14px;
+      padding: 0 7px;
+    }
+    .tag-contena {
+      .tag-links {
+        display: flex;
+        list-style: none;
+        margin: 0;
+        overflow: hidden;
+        padding: 0;
+        li {
+          display: inline-block;
+          a {
+            font-size: 11px;
+            line-height: 20px;
+            position: relative;
+            display: inline-block;
+            height: 20px;
+            margin: 0 0px 10px 10px;
+            padding: 0 10px 0 13px;
+            -webkit-transition: color 0.2s;
+            transition: color 0.2s;
+            text-decoration: none;
+            color: #ffffff;
+            border-radius: 0 3px 3px 0;
+            background: #0089e0;
+            transition: .3s;
+          }
+          a::before, a::after {
+            background: #fafcfc;
+          }
+          a::before {
+            position: absolute;
+            top: 7px;
+            left: 3px;
+            width: 6px;
+            height: 6px;
+            content: '';
+            border-radius: 10px;
+          }
+          a::after {
+            position: absolute;
+            top: -1px;
+            left: -6px;
+            width: 0;
+            height: 0;
+            content: '';
+            border-style: solid;
+            border-width: 11px 8px 11px 0;
+            border-color: transparent #0089e0 transparent transparent;
+            border-radius: 4px;
+            transition: .3s;
+          }
+          a:hover {
+            background: #555555;
+          }
+          a:hover:after {
+            border-color: transparent #555555 transparent transparent;
+          }
+        }
+      }
+    }
+    .comment {
+      border-top: 1px solid #ddd;
+      .comment-count {
+        font-size: 12px;
+      }
+    }
+    .link {
+      text-align: right;
+      .show-link {
+        text-decoration: none;
+        display: inline-block;
+        background: #333;
+        color: #fff;
+        padding: 5px;
+        font-size: 12px;
+        border-radius: 5px;
+      }
+      .show-link:hover {
+        opacity: 0.5;
+        transition: .2s;
+      }
+    }
+  }
+}
+.post-card:not(:first-of-type) {
+  margin-top: 20px;
+}
+
+.post-comment {
+  width: 95%;
+  margin: 0 auto 20px;
+  border-top: 1px solid #ddd;
+  .comment-count {
+    font-size: 14px;
+  }
+  .comment-form {
+    margin-bottom: 20px;
+    display: flex;
+    position: relative;
+    .profile-img {
+      position: absolute;
+      .img {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        object-fit:cover;
+        border-radius:50%;
+      }
+    }
+    .form {
+      margin-left: 40px;
+      width: calc(100% - 40px);
+      padding-left: 10px;
+      .text-area {
+        margin: 0;
+        width: 100%;
+        box-sizing: border-box;
+        padding: 5px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+      }
+      .submit-btn {
+        border: none;
+        display: block;
+        margin: 0 0 0 auto;
+        padding: 10px;
+        border-radius: 5px;
+        background-color: #333;
+        color: #fff;
+        font-weight: bold;
+        font-size: 11px;
+        appearance: none;
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
+      }
+      .submit-btn:hover {
+        opacity: 0.5;
+        transition: .2s;
+      }
+    }
+  }
+  .comments-area {
+    max-height: 260px;
+    overflow-y: scroll;
+    .comment-card {
+      position: relative;
+      .profile-img {
+        position: absolute;
+        .img {
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          object-fit:cover;
+          border-radius:50%;
+        }
+      }
+      .comment-item {
+        margin-left: 40px;
+        width: calc(100% - 40px);
+        .user-info {
+          padding: 0 0 0 10px;
+          margin-bottom: 10px;
+          position: relative;
+          .user-name {
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin: 0;
+            font-weight: bold;
+          }
+          .delete {
+            position: absolute;
+            right: 20px;
+            color: #ddd;
+            text-decoration: none;
+          }
+          .created-at {
+            height: 25px;
+            line-height: 25px;
+            text-align: center;
+            margin: 0;
+            font-size: 12px;
+            color: #aaa;
+            margin-left: 10px;
+          }
+        }
+        .comment-content {
+          padding-left: 10px;
+          font-size: 13px;
+          word-wrap: break-word;
+        }
+      }
+    }
+    .comment-card:not(:first-of-type) {
+      margin-top: 20px;
+    }
+  }
+}
+
+@media screen and (min-width: 481px) {
+  /* 481px以上に適用されるCSS（タブレット用） */
+  .posts-area, .post-show {
+    width: 450px;
+  }
+}
+
+
+
+

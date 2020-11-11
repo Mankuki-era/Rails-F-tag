@@ -1,0 +1,48 @@
+<p class="comment-count">
+  <%= comments.count %>件のタッグコメント
+</p>
+<% if current_user.favorites.exists?(post_id: post.id) || post.user == current_user %>
+  <div class="comment-form">
+    <div class="profile-img">
+      <% if current_user.profile_img.attached? %>
+        <%= image_tag current_user.profile_img, class: "img" %>
+      <% else %>
+        <%= image_tag 'no-profile.png', class: "img" %>
+      <% end %>
+    </div>
+    <div class="form">
+      <%= form_with(model:[post, comment], method: :post) do |f| %>
+        <%= f.text_area :content, :rows => "3", class: "text-area", :required => true, :placeholder => "#{current_user.user_name}としてタッグコメントを公開"  %>
+        <%= f.hidden_field :post_id, value: post.id %>
+        <%= f.submit '公開', class: "submit-btn" %>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+<div class="comments-area">
+  <% comments.each do |comment| %>
+  <div class="comment-card">
+    <div class="profile-img">
+      <% if comment.user.profile_img.attached? %>
+        <%= image_tag comment.user.profile_img, class: "img" %>
+      <% else %>
+        <%= image_tag 'no-profile.png', class: "img" %>
+      <% end %>
+    </div>
+    <div class="comment-item">
+      <div class="user-info">
+        <p class="user-name"><%= comment.user.user_name %></p>
+        <p class="created-at"><%= comment.created_at.strftime('%Y/%m/%d %H:%M') %></p>
+        <% if comment.user == current_user %>
+          <%= link_to post_comment_path(post, comment), method: :delete, data: { confirm: '削除しますか？', remote: true }, class: "delete" do %>
+            <i class="fas fa-trash-alt delete-icon"></i>
+          <% end %>
+        <% end %>
+      </div>
+      <div class="comment-content">
+        <%= comment.content %>
+      </div>
+    </div>
+  </div>
+  <% end %>
+</div>

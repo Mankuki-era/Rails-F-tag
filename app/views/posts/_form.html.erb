@@ -1,0 +1,24 @@
+<%= form_with model: post do |f| %>
+  <%= hidden_field_tag 'page', page %>
+  <div class="form-contena">
+    <div class="form-field">
+      <div class="label">
+        <p>タイトル</p>
+        <div>必須</div>
+      </div>
+      <%= f.text_field :title, class: "text-field", :required => true %>
+    </div>
+    <div class="form-field">
+      <div class="label">
+        <p>本文</p>
+        <div>必須</div>
+      </div>
+      <%= f.text_area :content, class: "text-area", :required => true  %>
+    </div>
+    <%= f.file_field :post_img, class: "file-field" %>
+    <div class="buttons">
+      <%= f.submit value, class: "submit-btn" %>
+      <button id="cancel" class="cancel-btn">キャンセル</button>
+    </div>
+  </div>
+<% end %>

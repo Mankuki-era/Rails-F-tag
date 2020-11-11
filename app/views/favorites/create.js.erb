@@ -1,0 +1,7 @@
+<% if @page == "postshow" %>
+  document.getElementById('postShow').innerHTML = '<%= j(render 'posts/post', post: @post, page: "postshow") %>'
+<% elsif @page == "postindex" %>
+  document.getElementById('post-<%= @post.id %>').innerHTML = '<%= j(render 'posts/post', post: @post, page: "postindex") %>'
+<% else %>
+  document.getElementById('post-<%= @post.id %>').innerHTML = '<%= j(render 'posts/post', post: @post, page: "usershow", user: @user) %>'
+<% end %>

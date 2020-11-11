@@ -1,0 +1,12 @@
+<% if @page == "usershow" %>
+  document.getElementById('userpostsIndex').innerHTML = '<%= j(render 'posts/posts', posts: @userposts, page: "usershow", message: "投稿はありません", detname: "userposts", user: @user) %>'
+  document.getElementById('count').innerHTML = '<%= j(render 'users/countbox', user: @user) %>'
+<% elsif @page == "postindex" %>
+  document.getElementById('postsindex').innerHTML = '<%= j(render 'posts/posts', posts: @posts, page: "postindex", message: "投稿はありません", detname: "postindex") %>'
+<% end %>
+
+document.getElementById('post_title').value = ''
+document.getElementById('post_content').value = ''
+document.getElementById('post_post_img').value = ''
+document.getElementById('modal').classList.add('hidden')
+document.getElementById('mask').classList.add('hidden')
