@@ -30,50 +30,59 @@
     </div>
   <% end %>
   <div class="help">
-    <% if post.user == current_user %>
-    <div class="word">
-      <i class="fas fa-hands-helping icon helping-icon"></i>
-    </div>
-    <div class="mymessage">
-      <%= post.favorites.count %>
-    </div>
-    <% else %>
-      <div class="help-link">
-        <% if current_user.favorites.exists?(post_id: post.id) %>
-          <% if page == "usershow" %>
-            <%= link_to post_favorites_path(post, page: page, user: user), data: {remote: true}, method: :delete, class: "help-btn" do %>
-              <i class="fas fa-hands-helping icon helping-icon"></i>
-              <div class="btn-content change">タッグ中</div>
-            <% end %>
-          <% else %>
-            <%= link_to post_favorites_path(post, page: page), data: {remote: true}, method: :delete, class: "help-btn" do %>
-              <i class="fas fa-hands-helping icon helping-icon"></i>
-              <div class="btn-content change">タッグ中</div>
-            <% end %>
-          <% end %>
-        <% else %>
-          <% if page == "usershow" %>
-            <%= link_to post_favorites_path(post, page: page, user: user), data: {remote: true}, method: :post, class: "help-btn" do %>
-              <i class="fas fa-hands-helping icon help-icon"></i>
-              <div class="btn-content">タッグ</div>
-            <% end %>
-          <% else %>
-            <%= link_to post_favorites_path(post, page: page), data: {remote: true}, method: :post, class: "help-btn" do %>
-              <i class="fas fa-hands-helping icon help-icon"></i>
-              <div class="btn-content">タッグ</div>
-            <% end %>
-          <% end %>
-        <% end %>
+    <% if user_signed_in? %>
+      <% if post.user == current_user %>
+      <div class="word">
+        <i class="fas fa-hands-helping icon helping-icon"></i>
       </div>
-      <% if current_user.favorites.exists?(post_id: post.id) %>
-        <div id="message" class="selectmessage">
-          <%= post.favorites.count %>
-        </div>
+      <div class="mymessage">
+        <%= post.favorites.count %>
+      </div>
       <% else %>
-        <div id="message" class="message">
-          <%= post.favorites.count %>
+        <div class="help-link">
+          <% if current_user.favorites.exists?(post_id: post.id) %>
+            <% if page == "usershow" %>
+              <%= link_to post_favorites_path(post, page: page, user: user), data: {remote: true}, method: :delete, class: "help-btn" do %>
+                <i class="fas fa-hands-helping icon helping-icon"></i>
+                <div class="btn-content change">タッグ中</div>
+              <% end %>
+            <% else %>
+              <%= link_to post_favorites_path(post, page: page), data: {remote: true}, method: :delete, class: "help-btn" do %>
+                <i class="fas fa-hands-helping icon helping-icon"></i>
+                <div class="btn-content change">タッグ中</div>
+              <% end %>
+            <% end %>
+          <% else %>
+            <% if page == "usershow" %>
+              <%= link_to post_favorites_path(post, page: page, user: user), data: {remote: true}, method: :post, class: "help-btn" do %>
+                <i class="fas fa-hands-helping icon help-icon"></i>
+                <div class="btn-content">タッグ</div>
+              <% end %>
+            <% else %>
+              <%= link_to post_favorites_path(post, page: page), data: {remote: true}, method: :post, class: "help-btn" do %>
+                <i class="fas fa-hands-helping icon help-icon"></i>
+                <div class="btn-content">タッグ</div>
+              <% end %>
+            <% end %>
+          <% end %>
         </div>
+        <% if current_user.favorites.exists?(post_id: post.id) %>
+          <div id="message" class="selectmessage">
+            <%= post.favorites.count %>
+          </div>
+        <% else %>
+          <div id="message" class="message">
+            <%= post.favorites.count %>
+          </div>
+        <% end %>
       <% end %>
+    <% else %>
+      <div class="word">
+        <i class="fas fa-hands-helping icon helping-icon"></i>
+      </div>
+      <div class="mymessage">
+        <%= post.favorites.count %>
+      </div>
     <% end %>
   </div>
   <h1><%= post.title %></h1>

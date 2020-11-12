@@ -3,7 +3,13 @@
 <% else %>
   <div class="add-link">
 <% end %>
-  <%= link_to new_post_path(page: page), data: {remote: true}, class: "add-post" do %>
-    <i class="fas fa-feather-alt fa-lg write-icon"></i>
-  <% end %>
-</div>
+    <% if user_signed_in? %>
+      <%= link_to new_post_path(page: page), data: {remote: true}, class: "add-post" do %>
+        <i class="fas fa-feather-alt fa-lg write-icon"></i>
+      <% end %>
+    <% else %>
+      <%= link_to new_post_path(page: page), class: "add-post" do %>
+        <i class="fas fa-feather-alt fa-lg write-icon"></i>
+      <% end %>
+    <% end %>
+  </div>

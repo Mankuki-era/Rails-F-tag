@@ -1,6 +1,5 @@
 Rails.application.routes.draw do
   get 'posts/:id/favorites', to: 'users#new'
-  # => redirect("/users/1?page3=")
   devise_for :users
   root 'posts#index'
   resources :posts do

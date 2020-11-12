@@ -1,4 +1,5 @@
 class PostsController < ApplicationController
+  before_action :authenticate_user!, except: [:index]
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :force_redirect, only: [:edit, :update, :destroy]
   
