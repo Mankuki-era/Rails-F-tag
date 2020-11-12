@@ -1,24 +1,24 @@
-# README
+# アプリケーション名
+　F-Tag・・・effort(努力)する人をユーザー間でTag(タッグ)を組んで助け合うサービスという意味
+　[アプリはこちらから](https://rails-f-tag.herokuapp.com/)
+ 
+## アプリケーションの概要
+　このアプリケーションは何かに挑戦したり取り組もうとしている若者の手助けをすることを目的とした、投稿共有サービスです。
+ 
+## アプリケーションで使っている技術
+　インフラ: heroku
+　データベース: PostgresSQL
+　開発環境: Docker
+　言語: Ruby on Rails 5.2.4.2
+　画像ストレージ: AWS S3
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
-
-Things you may want to cover:
-
-* Ruby version
-
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+## アプリケーションの機能
+　認証機能: devise
+　投稿のCRUD機能: Ajax
+　ユーザーのプロフィール編集機能: Ajax
+　画像投稿機能: Active Storage
+　投稿検索機能: ransack
+　ページネーション機能: kaminari
+　投稿へのコメント機能（投稿をいいねしたユーザーのみ可能）: Ajax
+　ユーザー同士のフォロー機能: Ajax
+　投稿へのいいね機能（アプリケーション内ではタッグ機能としている）: Ajax
