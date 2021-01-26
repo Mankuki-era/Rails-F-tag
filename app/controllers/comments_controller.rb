@@ -1,5 +1,8 @@
 class CommentsController < ApplicationController
+  # ログインしていない場合ログインページへリダイレクト
   before_action :authenticate_user!
+
+  # コメント作成
   def create
     @comment = current_user.comments.new(comment_params)
     @post = @comment.post
@@ -8,6 +11,7 @@ class CommentsController < ApplicationController
     @comment = Comment.new
   end
 
+  # コメント削除
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
@@ -18,6 +22,7 @@ class CommentsController < ApplicationController
 
   private
 
+  # ストロングパラメータ
   def comment_params
     params.require(:comment).permit(
       :content, :post_id

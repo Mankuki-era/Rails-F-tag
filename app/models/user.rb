@@ -4,6 +4,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
+  # リレーション
   has_many :posts, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :favorites, dependent: :destroy
@@ -14,6 +15,7 @@ class User < ApplicationRecord
   has_many :follower_relationships, foreign_key: "following_id", class_name: "FollowRelationship", dependent: :destroy
   has_many :followers, through: :follower_relationships
 
+  # バリデーション
   validates :user_name, presence: true
 
   #すでにフォロー済みであればtrue返す

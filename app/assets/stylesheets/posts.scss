@@ -2,6 +2,7 @@
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
+//投稿検索部分
 .search-box {
   position: absolute;
   right: 11px;
@@ -43,6 +44,7 @@
   }
 }
 
+//投稿一覧・投稿詳細画面
 .posts-area, .post-show {
   width: 100%;
   margin: 200px auto 0;
@@ -63,6 +65,7 @@
   }
 }
 
+//投稿カード部分
 .post-card {
   clear: right;
   border: 1px solid #eee;
@@ -341,6 +344,7 @@
   margin-top: 20px;
 }
 
+//コメント部分
 .post-comment {
   width: 95%;
   margin: 0 auto 20px;
@@ -456,6 +460,9 @@
   }
 }
 
+//レスポンシブ対応----------------------------------------------------
+
+//481px〜
 @media screen and (min-width: 481px) {
   /* 481px以上に適用されるCSS（タブレット用） */
   .posts-area, .post-show {

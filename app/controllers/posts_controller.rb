@@ -1,8 +1,10 @@
 class PostsController < ApplicationController
+  # ログインしていない場合ログインページへリダイレクト(投稿一覧ページは除く)
   before_action :authenticate_user!, except: [:index]
   before_action :set_post, only: [:edit, :update, :destroy]
   before_action :force_redirect, only: [:edit, :update, :destroy]
   
+  # 投稿一覧表示
   def index
     if params[:page2].present?
       return redirect_to "/users/#{params[:user]}?page2=#{params[:page2]}"
@@ -16,6 +18,7 @@ class PostsController < ApplicationController
     @posts = @q.result(distinct: true).order(created_at: :desc).page(params[:page]).per(5)
   end
 
+  # 投稿詳細表示
   def show
     if Post.exists?(params[:id])
       @post = Post.find(params[:id])
@@ -28,10 +31,12 @@ class PostsController < ApplicationController
     @comments = @post.comments.order(created_at: :desc)  
   end
 
+  # 投稿作成画面表示
   def new
     @page = params[:page]
   end
 
+  # 投稿保存
   def create
     @page = params['page']
     @post = Post.new(post_params)
@@ -48,10 +53,12 @@ class PostsController < ApplicationController
     @userposts = Post.where(user_id: current_user.id).order(created_at: :desc).page(params[:page]).per(5)
   end
 
+  # 投稿編集画面表示
   def edit
     @page = params[:page]
   end
 
+  # 投稿更新
   def update
     @page = params['page']
     current_tags = @post.tags.pluck(:name) unless @post.tags.nil?
@@ -78,6 +85,7 @@ class PostsController < ApplicationController
     end
   end
 
+  # 投稿削除
   def destroy
     @page = params[:pagename]
     @user = current_user
@@ -101,16 +109,19 @@ class PostsController < ApplicationController
 
   private
 
+  # ストロングパラメータ
   def post_params
     params.require(:post).permit(
       :title, :content, :post_img, :tag_ids, :usershow
     )
   end
 
+  # 対象投稿を設定
   def set_post
     @post = Post.find(params[:id])
   end
 
+  # 不正なアクセス防止
   def force_redirect
     if @post.user != current_user
       return redirect_to root_path, alert: "不正なアクセスです"

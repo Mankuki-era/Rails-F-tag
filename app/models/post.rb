@@ -1,4 +1,5 @@
 class Post < ApplicationRecord
+  # リレーション
   belongs_to :user
   has_one_attached :post_img
   has_many :comments, dependent: :destroy
@@ -6,6 +7,7 @@ class Post < ApplicationRecord
   has_many  :tag_relationships, dependent: :destroy
   has_many  :tags, through: :tag_relationships
 
+  # バリデーション
   validates :title, presence: true
   validates :content, presence: true
 end

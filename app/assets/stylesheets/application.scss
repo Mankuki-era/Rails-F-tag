@@ -16,30 +16,40 @@
 
 @import "font-awesome-sprockets";
 @import "font-awesome";
+
 html {
   min-height: 100%;
+}
+
+//新規登録
+#sessions-new {
+  min-height: calc(100vh - 100px);
 }
 
 body {
   position: relative;
 }
 
+// 投稿一覧ページ
 #posts-index {
   margin: 250px 0 0;
   padding-bottom: 100px;
   min-height: calc(100vh - 350px);
 }
 
+// 投稿詳細ページ
 #posts-show {
   margin: 200px 0 0;
   padding-bottom: 100px;
   min-height: calc(100vh - 350px);
 }
 
+// ユーザー詳細ページ
 #users-show {
   margin: 150px 0 0;
 }
 
+// ヘッダー
 .header {
   position: fixed;
   z-index: 3;
@@ -124,6 +134,8 @@ body {
       }
     }
   }
+
+  //セッション・アラートメッセージ部分
   .notice, .alert {
     display: inline-block;
     min-width: 200px;
@@ -145,6 +157,7 @@ body {
   }
 }
 
+// フラッシュメッセージアニメーション
 @keyframes flash {
   0% {
     transform: translate(-500px, 0);
@@ -163,10 +176,12 @@ body {
   }
 }
 
+//マスク部分
 #mask.hidden, #second-mask.hidden {
   display: none;
 }
 
+//マスク部分()
 #mask, #second-mask {
   z-index: 2;
   position: fixed;
@@ -177,6 +192,7 @@ body {
   left: 0;
 }
 
+//モーダルウィンドウ
 #modal.hidden, #second-modal.hidden {
   transform: translate(0, -700px);
 }
@@ -272,6 +288,7 @@ body {
   }
 }
 
+ //ページネーション部分
 .pagination {
   width: 90%;
   box-shadow: 0 0 5px rgba(51, 51, 51, 0.205);
@@ -304,6 +321,7 @@ body {
   }
 }
 
+// 投稿追加ボタン
 .add-link {
   width: 50px;
   height: 50px;
@@ -316,7 +334,7 @@ body {
     width: 100%;
     height: 100%;
     border-radius: 50%;
-    background: #1e90ff;
+    background: #0b437a;
     position: relative;
     margin-bottom: 20px;
     .write-icon {
@@ -336,12 +354,14 @@ body {
   top: 10px;
 }
 
+//投稿なしの場合
 .no-posts {
   margin-top: 50px;
   text-align: center;
   color: #aaa;
 }
 
+//フッター
 .footer {
   position: absolute;
   bottom: 0px;
@@ -354,6 +374,9 @@ body {
   color: #fff;
 }
 
+//レスポンシブ対応-----------------------------------------------------
+
+// 481px〜
 @media screen and (min-width: 481px) {
   /* 481px以上に適用されるCSS（タブレット用） */
   .header {
@@ -376,6 +399,7 @@ body {
   }
 }
 
+//530px〜
 @media screen and (min-width: 530px) {
   /* 530px以上に適用されるCSS（PC用） */
   #modal, #second-modal {
